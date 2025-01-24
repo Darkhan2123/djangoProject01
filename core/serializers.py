@@ -31,3 +31,8 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
 
         fields = '__all__'
+
+    def validate_title(self, value):
+        if len(value) < 5:
+            raise serializers.ValidationError("Title must be at leaast 5 charecters long.")
+        return value
